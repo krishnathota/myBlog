@@ -1,0 +1,7 @@
+{
+  "name": "myBlog",
+  "short_name": "myBlog",
+  "description": "Personal bio and blog",
+  "start_url": "/",
+  "display": "standalone"
+}
