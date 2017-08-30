@@ -1,261 +1,52 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../../bower_components/iron-icons/communication-icons.html">
-<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
-<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
-<link rel="import" href="../../bower_components/app-layout/app-box/app-box.html">
-<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
-<dom-module id="myBlog-app">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="my-header.html">
+<link rel="import" href="my-profile.html">
+
+<dom-module id="my-blog-app">
   <template>
-    <style is="custom-style">
-      body {
-        margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        background-color: #eee;
+    <style>
+       :host {
+        display: block;
       }
-      
-      * {
-        font-family: 'Roboto', 'Noto', sans-serif;
-      }
-      
-      p {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-        font-size: 10pt;
-        line-height: 17pt;
-      }
-      
-      app-box {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        --app-box-background-front-layer: {
-          background: url(../../images/sativa.png);
-          background-repeat: repeat;
-        }
-      }
-      
-      .container {
-        margin-top: 24px;
-      }
-      
-      .container>div {
-        margin: 10px;
-      }
-      
-      .container {
-        padding: 0 1.5rem;
-        margin: 0 auto;
-        max-width: 1280px;
-        width: 90%;
-        display: flex;
-        position: relative;
-        @apply(--layout-vertical)
-      }
-      
-      .detail paper-material {
-        background-color: #ffffff;
-      }
-      
-      .overview paper-material {
-        background-color: #5da4d9;
-        color: #ffffff;
-      }
-      
-      @media (min-width: 601px) {
-        .container {
-          width: 85%;
-          @apply(--layout-horizontal)
-        }
-        .overview {
-          @apply(--layout-flex)
-        }
-        .detail {
-          @apply(--layout-flex-2)
-        }
-      }
-      
-      @media (min-width: 993px) {
-        .container {
-          width: 70%;
-        }
-      }
-      
-      paper-material {
-        border-radius: 2px;
-      }
-      
-      .heading .title {
-        position: absolute;
-        left: 30px;
-        top: 150px;
-      }
-      
-      .overview-item {
-        display: flex;
-      }
-      
-      .overview-item .icon {
-        padding: 1.4em 1em 0 10px;
-        /*@apply(--layout-self-center)*/
-      }
-      
-      .overview-item .info {
-        font-size: 11pt;
-        line-height: 20pt;
-        padding: 0.5em 2em 0.5em 5px;
-        opacity: 1;
-        margin: 0px !important;
-        @apply(--layout-flex)
-      }
-      
-      .overview-item .info span {
-        font-weight: 300;
-        font-size: 10pt;
-        line-height: 17pt;
-        opacity: 0.7;
-      }
-      
-      .overview-item .info summary {
-        font-weight: 300;
-        font-size: 10pt;
-        line-height: 17pt;
-      }
-      
-      .overview-item .info a {
-        -webkit-tap-highlight-color: transparent;
-        background-color: transparent;
-        color: #ffffff;
-        text-decoration: none;
-      }
-      
-      .overview-item+.overview-item .info {
-        border-top: 1px solid #4783c2;
-      }
-      
-      .profile-img {
-        max-width: 100%;
-        max-height: 100%;
-        image-orientation: from-image
-      }
-      
-      paper-slider {
-        --paper-slider-disabled-active-color: var(--paper-grey-50);
-        --paper-slider-disabled-secondary-color: var(--paper-grey-50);
-        --paper-slider-container-color: #4783c2;
-        --paper-slider-disabled-knob-color: var(--paper-grey-50);
-      }
-      
-       :host paper-slider {
-        width: initial !important;
-      }
-      
-      .paper-slider-0 #sliderContainer.disabled.paper-slider {
-        margin: 0px !important;
+
+      paper-button.title {
+        background: green;
+        color: yellow;
       }
     </style>
-    <app-box effects="parallax-background"></app-box>
-    <div class="container horizontal layout">
-      <div class="overview">
-        <paper-material elevation="2" animated>
-          <div class="heading">
-            <div class="feature-img">
-              <a href="/"><img class="profile-img" src="../../images/profile.jpg" class="responsive-img" alt=""></a>
-              <div class="title">
-                <h2>Krishna Thota</h2>
-                <span></span>
-              </div>
-            </div>
-          </div>
-          <div class="overview-item">
-            <span class="icon">
-              <iron-icon icon="social:person"></iron-icon>
-            </span>
-            <span class="info">
-              <summary>
-                Girl is the second studio album by American recording artist and record producer Pharrell Williams. The album was released
-                on March 3, 2014, through Williams' label i Am Other and Columbia Records.
-              </summary>
-            </span>
-          </div>
-          <div class="overview-item">
-            <span class="icon">
-              <iron-icon icon="communication:phone"></iron-icon>
-            </span>
-            <span class="info">
-                <div><a href="tel:994-884-3888">994-884-3888</a></div>
-            <span>mobile</span>
-            </span>
-          </div>
-          <div class="overview-item">
-            <span class="icon">
-              <iron-icon icon="communication:email"></iron-icon>
-            </span>
-            <span class="info">
-                <div><a href="email:krishnathota@outlook.com">krishnathota@outlook.com</a></div>
-                <!--<div><a href="email:krishnathota219@gmail.com">krishnathota219@gmail.com</a></div>-->
-                <span>personal</span>
-            </span>
-          </div>
-          <div class="overview-item">
-            <span class="icon">
-              <iron-icon icon="icons:home"></iron-icon>
-            </span>
-            <span class="info">
-                <div>#504, Sivarama Krishna Mansion, Allwyn Colony, Kukatpally, Hyderabad</div>
-            <span>500072</span>
-            </span>
-          </div>
-          <div class="overview-item">
-            <span class="icon">
-              <iron-icon icon="icons:fingerprint"></iron-icon>
-            </span>
-            <span class="info">
-              <div>C#<paper-slider disabled value="85" pin expand></paper-slider></div>
-              <div>ASP.NET<paper-slider disabled value="80" pin expand></paper-slider></div>
-              <div>MVC<paper-slider disabled value="75" pin expand></paper-slider></div>
-              <div>SQL<paper-slider disabled value="80" pin expand></paper-slider></div>
-              <div>JavaScript<paper-slider disabled value="80" pin expand></paper-slider></div>
-              <div>Polymer<paper-slider disabled value="90" pin expand></paper-slider></div>
-            </span>
-          </div>
-        </paper-material>
+
+    <app-header-layout>
+      <my-header></my-header>
+
+
+      <div id="mainContainer">
+        <my-profile></my-profile>
       </div>
-      <div class="detail">
-        <paper-material elevation="2" animated>
-          <div class="col l12 m12 s12 sort-info sidebar-item">
-            <summary>
-              Girl is the second studio album by American recording artist and record producer Pharrell Williams. The album was released
-              on March 3, 2014, through Williams' label i Am Other and Columbia Records.
-            </summary>
-          </div>
-        </paper-material>
-      </div>
-    </div>
+
+    </app-header-layout>
   </template>
+
   <script>
-    Polymer({
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MyBlogApp extends Polymer.Element {
+      static get is() {
+        return 'my-blog-app';
+      }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'myBlog-app'
+          }
+        };
+      }
+    }
 
-      is: 'myBlog-app',
-
-      properties: {
-        prop1: {
-          type: String,
-          value: 'myBlog-app',
-        },
-      },
-
-    });
+    window.customElements.define(MyBlogApp.is, MyBlogApp);
   </script>
 </dom-module>

@@ -1,0 +1,111 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<dom-module id="my-header">
+    <template>
+        <style>
+             :host {
+                display: block
+            }
+
+            paper-button.title,
+            paper-button.blog-title {
+                text-transform: initial;
+                min-width: 0;
+                padding: 0;
+                color: #08c;
+                margin: inherit;
+                transition: 0.05s all ease;
+            }
+
+            paper-button.title:hover {
+                color: #c33;
+                text-shadow: -5px 0 6px #08c;
+            }
+
+            paper-button.blog-title:hover {
+                color: #c33;
+                text-shadow: 5px 0 6px #08c;
+            }
+
+            paper-button {
+                --paper-button-flat-keyboard-focus: {
+                    font-weight: inherit;
+                }
+            }
+
+            .title-container {
+                display: flex;
+                flex: 1 1 auto;
+                justify-content: center;
+                align-items: center;
+                font-weight: 100;
+                font-size: 100px;
+                text-decoration: none;
+                transition: all linear .2s;
+                font-family: 'Source Sans Pro', sans-serif;
+            }
+        </style>
+        <app-header slot="header" effects="waterfall">
+            <span main-title class="title-container">
+                    <paper-button id="title" class="title" noink shadow-direction="left">me</paper-button>.<paper-button id="blogTitle" noink class="blog-title" shadow-direction"right">blog</paper-button>
+                </span>
+        </app-header>
+
+
+    </template>
+
+    <script>
+        class MyHeader extends Polymer.Element {
+            static get is() {
+                return 'my-header';
+            }
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function () {
+
+                });
+                this.$.title.addEventListener('mousemove', e => this._handleMouseMove(e));
+                this.$.blogTitle.addEventListener('mousemove', e => this._handleMouseMove(e));
+                this.$.title.addEventListener('mouseleave', e => this._handleMouseLeave(e));
+                this.$.blogTitle.addEventListener('mouseleave', e => this._handleMouseLeave(e));
+            }
+
+            _handleMouseMove(e) {
+                let _direction = e.target.getAttribute('shadow-direction');
+                const _shadowTemplate = '10px #08c';
+                let _center = {
+                    x: e.target.clientWidth / 2,
+                    y: e.target.clientHeight / 2
+                };
+
+                //Mouse Position relative to the element
+                let _mouse = {
+                    x: _center.x - (e.pageX - e.target.offsetLeft),
+                    y: (e.pageY - e.target.offsetTop) - _center.y
+                }
+
+                //Limit distance of shadow
+                const _limit = {
+                    min: -5,
+                    max: 5
+                };
+                _mouse.x = _mouse.x > _limit.max ? _limit.max : _mouse.x;
+                _mouse.x = _mouse.x < _limit.min ? _limit.min : _mouse.x;
+                _mouse.y = _mouse.y > _limit.max ? _limit.max : _mouse.y;
+                _mouse.y = _mouse.y < _limit.min ? _limit.min : _mouse.y;
+
+                e.target.style.textShadow = Math.ceil((_mouse.x)) + 'px ' + Math.ceil(-(_mouse.y)) + 'px ' +
+                    _shadowTemplate;
+            }
+
+            _handleMouseLeave(e) {
+                e.target.style.textShadow = null;
+            }
+        }
+
+        window.customElements.define(MyHeader.is, MyHeader);
+    </script>
+</dom-module>
