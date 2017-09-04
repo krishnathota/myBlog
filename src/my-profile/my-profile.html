@@ -1,27 +1,55 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="my-overview.html">
 <link rel="import" href="my-detail.html">
+<link rel="import" href="my-detail2.html">
 
 <dom-module id="my-profile">
     <template>
         <style>
              :host {
                 display: flex;
+                margin: 0 auto;
+                flex-flow: row;
+                flex-wrap: wrap;
             }
 
-            my-overview {
+            .overview {
+                flex: inherit;
+            }
+
+            .detail {
                 flex: 1;
-                margin: 5px;
             }
 
-            my-detail {
-                flex: 2;
-                margin: 5px;
+            .card {
+                margin: 5px 0;
+            }
+
+            @media(max-width:48em) {
+                .detail {
+                    display: flex;
+                    flex-flow: row;
+                    flex-wrap: wrap;
+                }
+            }
+
+            @media (min-width: 48em) {
+                 :host {
+                    max-width: 75em;
+                }
+                .card {
+                    margin: 5px;
+                }
+                .overview {
+                    flex: 0 0 30%;
+                }
             }
         </style>
-        <my-overview></my-overview>
-        <my-detail></my-detail>
-
+        <my-overview class="card overview"></my-overview>
+        <div class="detail">
+            <my-detail class="card"></my-detail>
+            <my-detail class="card"></my-detail>
+        </div>
     </template>
 
     <script>

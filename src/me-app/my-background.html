@@ -142,12 +142,7 @@
             }
             ready() {
                 super.ready();
-
-                Polymer.RenderStatus.afterNextRender(this, function () {
-                    debugger;
-                    particlesJS(this.$.background, this.particlesConfig);
-
-                });
+                particlesJS(this.$.background, this.particlesConfig);
             }
         }
 
