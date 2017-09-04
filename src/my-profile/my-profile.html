@@ -1,14 +1,26 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="my-overview.html">
+<link rel="import" href="my-detail.html">
 
 <dom-module id="my-profile">
     <template>
         <style>
              :host {
-                display: block
+                display: flex;
+            }
+
+            my-overview {
+                flex: 1;
+                margin: 5px;
+            }
+
+            my-detail {
+                flex: 2;
+                margin: 5px;
             }
         </style>
-
-
+        <my-overview></my-overview>
+        <my-detail></my-detail>
 
     </template>
 

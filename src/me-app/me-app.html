@@ -1,23 +1,32 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="my-background.html">
 <link rel="import" href="my-header.html">
-<link rel="import" href="my-profile.html">
+<link rel="import" href="../my-profile/my-profile.html">
 
-<dom-module id="my-blog-app">
+<dom-module id="me-app">
   <template>
     <style>
        :host {
         display: block;
+        /* background-image: url('../../images/memphis-colorful.png'); */
       }
 
       paper-button.title {
         background: green;
         color: yellow;
       }
+
+      my-background {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+      }
     </style>
 
     <app-header-layout>
+      <my-background></my-background>
       <my-header></my-header>
 
 
@@ -33,20 +42,15 @@
      * @customElement
      * @polymer
      */
-    class MyBlogApp extends Polymer.Element {
+    class MeApp extends Polymer.Element {
       static get is() {
-        return 'my-blog-app';
+        return 'me-app';
       }
       static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'myBlog-app'
-          }
-        };
+        return {};
       }
     }
 
-    window.customElements.define(MyBlogApp.is, MyBlogApp);
+    window.customElements.define(MeApp.is, MeApp);
   </script>
 </dom-module>

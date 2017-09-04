@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="my-detail">
+    <template>
+        <style>
+             :host {
+                display: block
+            }
+        </style>
+
+        <paper-card heading="Krishna Thota" image="../images/profile1.jpg" elevation="2" animated-shadow="false">
+            <div class="card-content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, accusamus, error eveniet voluptatem quae veniam itaque
+                debitis nostrum possimus earum temporibus accusantium minus doloremque eos dignissimos tenetur, suscipit
+                sed tempore.
+            </div>
+        </paper-card>
+
+
+
+    </template>
+
+    <script>
+        /**
+         * `my-detail` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class MyDetail extends Polymer.Element {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'my-detail';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+
+                };
+            }
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function () {
+
+                });
+            }
+
+        }
+
+        window.customElements.define(MyDetail.is, MyDetail);
+    </script>
+</dom-module>
