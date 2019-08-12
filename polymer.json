@@ -1,7 +1,29 @@
 {
+  "entrypoint": "index.html",
+  "shell": "src/me-app/me-app.html",
+  "fragments": [
+    "src/my-profile/my-profile.html"
+  ],
+  "sources": [
+    "src/**/*",
+    //"data/**/*",
+    "images/**/*",
+    "bower.json"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.js"
+  ],
   "lint": {
-    "rules": [
-      "polymer-2"
-    ]
-  }
+    "rules": ["polymer-2"]
+  },
+  "builds": [{
+      "preset": "es5-bundled",
+      "addServiceWorker": false
+    },
+    {
+      "preset": "es6-unbundled",
+      "addServiceWorker": false
+    }
+  ]
 }

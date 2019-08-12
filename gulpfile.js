@@ -48,4 +48,5 @@ gulp.task('html', function () {
         .pipe(connect.reload())
 });
 
-gulp.task('default', ['html', 'sass', 'connect', 'watch']);
+//gulp.task('default', ['html', 'sass', 'connect', 'watch']);
+gulp.task('default', ['connect']);
